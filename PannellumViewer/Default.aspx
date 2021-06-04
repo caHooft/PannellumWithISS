@@ -47,6 +47,7 @@
                 <div class="column">
                     <div id="panorama">
                         <div id="controls">
+                            <div class="ctrl" id="send">&#9940;</div>
                             <div class="ctrl" id="center-image">&#9635;</div>
                             <div class="ctrl" id="pan-up">&#9650;</div>
                             <div class="ctrl" id="pan-down">&#9660;</div>
@@ -103,48 +104,6 @@
 
                     jQuery("label[for='pitch']").html("<strong>Pitch: </strong>" + Pitch);
                     jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + Yaw);
-                });
-
-                // Call WebService
-                var point1 =
-                    //Point1 is camera position
-                {
-                    X: "127791.452",
-                    Y: "398638.122",
-                    Z: "11.699"
-                };
-
-                var point2 =
-                    //Point2 is a directinal vector from camera to clicked point
-                {
-                    X: "1234.456",
-                    Y: "7890.123",
-                    Z: "11"
-                };
-
-                var point3 =
-                    //Point3 is a directinal vector that represents the dead center of the image
-                {
-                    X: "1234.456",
-                    Y: "7890.123",
-                    Z: "11"
-                };
-
-                $.ajax
-                ({
-                    url: 'WebServices/WebService1.asmx/SendPoints',
-                    type: 'POST',
-                    data: '{"point1": ' + JSON.stringify(point1) + ', "point2": ' + JSON.stringify(point2) + '}',
-                    contentType: "application/json",
-                    dataType: "json",
-                    success: function (response)
-                    {
-                        console.log(JSON.parse(response.d));
-                    },
-                    error: function (xhr, textStatus, errorThrown)
-                    {
-                        alert('Error occurred.');
-                    }
                 });
             });
 
@@ -251,6 +210,50 @@
                //dead center button
                 document.getElementById('center-image').addEventListener('click', function (e) {
                     CenterImage();
+                });
+                document.getElementById('send').addEventListener('click', function (e) {
+                    // Call WebService
+                    var point1 =
+                        //Point1 is camera position
+                    {
+                        X: "127791.452",
+                        Y: "398638.122",
+                        Z: "11.699"
+                    };
+
+                    var point2 =
+                        //Point2 is a directinal vector from camera to clicked point
+                    {
+                        X: "1234.456",
+                        Y: "7890.123",
+                        Z: "11"
+                    };
+
+                    var point3 =
+                        //Point3 is a directinal vector that represents the dead center of the image
+                    {
+                        X: "1234.456",
+                        Y: "7890.123",
+                        Z: "11"
+                    };
+
+                    $.ajax
+                    ({
+                        url: 'WebServices/WebService1.asmx/SendPoints',
+                        type: 'POST',
+                        data: '{"point1": ' + JSON.stringify(point1) + ', "point2": ' + JSON.stringify(point2) + ', "point3": ' + JSON.stringify(point3) + '}',
+                        contentType: "application/json",
+                        dataType: "json",
+
+                        success: function (response) {
+                            console.log(JSON.parse(response.d)),
+                            alert(point1.X);
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            alert('Error occurred.');
+                        }
+                    });
+                    
                 });
                 document.getElementById('pan-up').addEventListener('click', function (e) {
                     viewer.setPitch(viewer.getPitch() + 10);

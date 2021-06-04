@@ -23,15 +23,37 @@ namespace PannellumViewer.WebServices
     {
         [WebMethod]
         [ScriptMethod(UseHttpGet = false, ResponseFormat = ResponseFormat.Json, XmlSerializeString = false)]
-        public string SendPoints(Point point1, Point point2)
+        //public string SendPoints(Point point1, Point vector1, Point currentCenterDirection
+        public string SendPoints(Point point1, Point point2, Point point3)
         {
-            List<Point> point3Ds = new List<Point>
+            List<Point> points = new List<Point>
             {
                 point1,
-                point2
+                point2,
+                point3
             };
+            
 
-            return JsonConvert.SerializeObject(point3Ds);
+            return JsonConvert.SerializeObject(points);
         }
+        /*
+        public double ConvertToRadians(double angle)
+        {
+            return (Math.PI / 180) * angle;
+        }
+
+        Point getDirectionVector(double pitch, double yaw)
+        {
+            double pitchRadians = ConvertToRadians(pitch);
+            double yawRadians = ConvertToRadians(yaw);
+
+            double sinPitch = Math.Sin(pitchRadians);
+            double cosPitch = Math.Cos(pitchRadians);
+            double sinYaw = Math.Sin(yawRadians);
+            double cosYaw = Math.Cos(yawRadians);
+
+            return new Point(-cosPitch * sinYaw, sinPitch, -cosPitch * cosYaw);
+        }
+        */
     }
 }
