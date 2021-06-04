@@ -12,24 +12,6 @@
     <script src="Script/js/pannellum.js"></script>
     <script src="Script/js/libpannellum.js"></script>
     
-    
-    <script>    
-        //Print yaw/pitch useing jQuery
-        var PrintCoordinate = function (hotSpotDiv, args) {
-            var pitch = args.pitch;
-            jQuery("label[for='pitch']").html("<strong>Pitch: </strong>" + pitch);
-            var yaw = args.yaw;
-            jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + yaw);
-        };
-        //Print x/y useing jQuery
-        var PrintCoordinateXY = function (hotSpotDiv, args) {
-            var X = args.X;
-            jQuery("label[for='X']").html("<strong>X: </strong>" + X);
-            var Y = args.Y;
-            jQuery("label[for='Y']").html("<strong>Y: </strong>" + Y);
-        };
-
-    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -80,6 +62,22 @@
             </div>
         </div>
         <script>
+
+            //Print yaw/pitch useing jQuery
+            var PrintCoordinate = function (hotSpotDiv, args) {
+                var pitch = args.pitch;
+                jQuery("label[for='pitch']").html("<strong>Pitch: </strong>" + pitch);
+                var yaw = args.yaw;
+                jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + yaw);
+            };
+            //Print x/y useing jQuery
+            var PrintCoordinateXY = function (hotSpotDiv, args) {
+                var X = args.X;
+                jQuery("label[for='X']").html("<strong>X: </strong>" + X);
+                var Y = args.Y;
+                jQuery("label[for='Y']").html("<strong>Y: </strong>" + Y);
+            };
+
             // script that debugs 2D image on click based on 8000 by 4000 image
             var origonalImageX = 8000;
             var origonalImageY = 4000;
@@ -117,7 +115,15 @@
                 };
 
                 var point2 =
-                    //Point1 is a 3D point in the pointcloud
+                    //Point2 is a directinal vector from camera to clicked point
+                {
+                    X: "1234.456",
+                    Y: "7890.123",
+                    Z: "11"
+                };
+
+                var point3 =
+                    //Point3 is a directinal vector that represents the dead center of the image
                 {
                     X: "1234.456",
                     Y: "7890.123",
@@ -142,25 +148,6 @@
                 });
             });
 
-
-            //new script that debugs 2D image on hover
-            /*
-            $(document).ready(function () {
-                $('img').on("mousemove", function (e)
-                {
-                    var offset = $(this).offset();
-                    var X = (e.pageX - offset.left);
-                    var Y = (e.pageY - offset.top);
-                    jQuery("label[for='X']").html("<strong>X: </strong>" + X*scalingFactor);
-                    jQuery("label[for='Y']").html("<strong>Y: </strong>" + Y*scalingFactor);
-                });
-            });
-            */
-
-        </script>
-
-
-        <script>
             viewer = pannellum.viewer('panorama',
                 {
                     "default":
@@ -224,37 +211,8 @@
                         }
                     }
                 });
-                viewer.on('mousedown', function (event) {
-                    // coords[0] is pitch, coords[1] is yaw
-                    var coords = viewer.mouseEventToCoords(event);
 
-                    jQuery("label[for='pitch']").html("<strong>Pitch: </strong>" + coords[0]);
-
-                    jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + coords[1]);
-
-                    //debug to calculate x.y from pannellum through math
-                    var k = 8000 / 360;
-
-                    vert_angle_of_view = 4000 / k;
-
-                    var x = k * (coords[1] + 0.5 * 360);
-                    var y = k * ((coords[0] * -1) + 0.5 * vert_angle_of_view);
-
-                    var X = Math.round((x + Number.EPSILON) * 100) / 100;
-                    var Y = Math.round((y + Number.EPSILON) * 100) / 100;
-
-                    jQuery("label[for='X']").html("<strong>X: </strong>" + X);
-                    jQuery("label[for='Y']").html("<strong>Y: </strong>" + Y);
-                });
-
-                document.getElementById('center-image').addEventListener('click', function (e) {
-                    //dead center button
-                    pitch = viewer.getPitch();
-                    yaw = viewer.getYaw();
-                    //viewer.getHfov() = fov;
-                    jQuery("label[for='pitch']").html("<strong>Pitch: </strong>" + pitch);
-                    jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + yaw);
-
+                function convertPitchYaw(pitch, yaw) {
                     var k = 8000 / 360;
 
                     vert_angle_of_view = 4000 / k;
@@ -267,8 +225,33 @@
 
                     jQuery("label[for='X']").html("<strong>X: </strong>" + X);
                     jQuery("label[for='Y']").html("<strong>Y: </strong>" + Y);
+                }
+
+                function CenterImage() {
+                    pitch = viewer.getPitch();
+                    yaw = viewer.getYaw();
+                    //viewer.getHfov() = fov;
+
+                    jQuery("label[for='pitch']").html("<strong>Pitch: </strong>" + pitch);
+                    jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + yaw);
+
+                    convertPitchYaw(pitch, yaw);
+                }
+
+                viewer.on('mousedown', function (event) {
+                    // coords[0] is pitch, coords[1] is yaw
+                    var coords = viewer.mouseEventToCoords(event);
+
+                    jQuery("label[for='pitch']").html("<strong>Pitch: </strong>" + coords[0]);
+                    jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + coords[1]);
+
+                    convertPitchYaw(coords[0], coords[1]);
                 });
 
+               //dead center button
+                document.getElementById('center-image').addEventListener('click', function (e) {
+                    CenterImage();
+                });
                 document.getElementById('pan-up').addEventListener('click', function (e) {
                     viewer.setPitch(viewer.getPitch() + 10);
                 });
