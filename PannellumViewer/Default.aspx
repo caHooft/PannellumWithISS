@@ -63,6 +63,13 @@
             </div>
         </div>
         <script>
+            var point2 =
+                //Point1 is camera position
+            {
+                X: "127791.452",
+                Y: "398638.122",
+                Z: "11.699"
+            };
             
             //Print yaw/pitch useing jQuery
             var PrintCoordinate = function (hotSpotDiv, args) {
@@ -170,14 +177,18 @@
                         }
                     }
                 });
-
-                var point2 =
-                //Point2 is a directinal vector from camera to clicked point
+                function UpdatePoint2(pitch,yaw)
                 {
-                    X: "1234.456",
-                    Y: "7890.123",
-                    Z: "11"
-                };
+
+                    var values = getDirectionVector(pitch, yaw);
+
+                    point2 =
+                    {
+                        X: values[0],
+                        Y: values[1],
+                        Z: values[2]
+                    };
+                }
 
                 function ConvertToRadians(angle)
                 {
@@ -232,6 +243,7 @@
                     jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + coords[1]);
 
                     convertPitchYaw(coords[0], coords[1]);
+                    UpdatePoint2(coords[0], coords[1]);
                 });
 
                //dead center button
@@ -257,8 +269,7 @@
                         X: values[0],
                         Y: values[1],
                         Z: values[2]
-                    };
-                    
+                    };                    
                     
                     $.ajax
                     ({
