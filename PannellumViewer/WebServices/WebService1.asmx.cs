@@ -36,13 +36,13 @@ namespace PannellumViewer.WebServices
 
             return JsonConvert.SerializeObject(points);
         }
-        /*
+        
         public double ConvertToRadians(double angle)
         {
             return (Math.PI / 180) * angle;
         }
 
-        Point getDirectionVector(double pitch, double yaw)
+        Vector getDirectionVector(double pitch, double yaw)
         {
             double pitchRadians = ConvertToRadians(pitch);
             double yawRadians = ConvertToRadians(yaw);
@@ -52,8 +52,8 @@ namespace PannellumViewer.WebServices
             double sinYaw = Math.Sin(yawRadians);
             double cosYaw = Math.Cos(yawRadians);
 
-            return new Point(-cosPitch * sinYaw, sinPitch, -cosPitch * cosYaw);
+            return new Vector(-cosPitch * sinYaw, sinPitch, -cosPitch * cosYaw);
         }
-        */
+        
     }
 }

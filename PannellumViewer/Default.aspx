@@ -63,7 +63,7 @@
             </div>
         </div>
         <script>
-
+            
             //Print yaw/pitch useing jQuery
             var PrintCoordinate = function (hotSpotDiv, args) {
                 var pitch = args.pitch;
@@ -171,6 +171,33 @@
                     }
                 });
 
+                var point2 =
+                //Point2 is a directinal vector from camera to clicked point
+                {
+                    X: "1234.456",
+                    Y: "7890.123",
+                    Z: "11"
+                };
+
+                function ConvertToRadians(angle)
+                {
+            
+                    return (Math.PI / 180) * angle;
+                }
+
+                function getDirectionVector(pitch, yaw)
+                {
+                var pitchRadians = ConvertToRadians(pitch);
+                var yawRadians = ConvertToRadians(yaw);
+
+                var sinPitch = Math.sin(pitchRadians);
+                var cosPitch = Math.cos(pitchRadians);
+                var sinYaw = Math.sin(yawRadians);
+                var cosYaw = Math.cos(yawRadians);
+
+                return [-cosPitch * sinYaw, sinPitch, -cosPitch * cosYaw];
+                }
+
                 function convertPitchYaw(pitch, yaw) {
                     var k = 8000 / 360;
 
@@ -219,24 +246,20 @@
                         X: "127791.452",
                         Y: "398638.122",
                         Z: "11.699"
-                    };
+                    };            
 
-                    var point2 =
-                        //Point2 is a directinal vector from camera to clicked point
-                    {
-                        X: "1234.456",
-                        Y: "7890.123",
-                        Z: "11"
-                    };
+                    pitch = viewer.getPitch();
+                    yaw = viewer.getYaw();
+                    var values = getDirectionVector(pitch, yaw);
 
                     var point3 =
-                        //Point3 is a directinal vector that represents the dead center of the image
                     {
-                        X: "1234.456",
-                        Y: "7890.123",
-                        Z: "11"
+                        X: values[0],
+                        Y: values[1],
+                        Z: values[2]
                     };
-
+                    
+                    
                     $.ajax
                     ({
                         url: 'WebServices/WebService1.asmx/SendPoints',

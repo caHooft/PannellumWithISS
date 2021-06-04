@@ -114,8 +114,8 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GetDirectionVector.cs" />
-    <Compile Include="Vector.cs" />
-    <Compile Include="Point.cs" />
+    <Compile Include="Script\Vector.cs" />
+    <Compile Include="Script\Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebServices\WebService1.asmx.cs">
       <DependentUpon>WebService1.asmx</DependentUpon>
