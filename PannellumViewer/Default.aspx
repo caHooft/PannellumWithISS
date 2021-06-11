@@ -40,14 +40,15 @@
                 <div class="column">
 
                     <div class="image">
-                        <img src="360images/trafficSign/stream_00002-000000_00020_0000043.jpg" style="width: 100%; height: 100%;" />
+                        <!--<img src="360images/trafficSign/stream_00002-000000_00020_0000043.jpg" style="width: 100%; height: 100%;" />!-->
+                        <img src="360images/Images filtered_aoi/stream_00004-000000_00016_0000187.jpg" style="width: 100%; height: 100%;" />
                     </div>
                 </div>
 
                 <div class="column">
                     <div id="panorama">
                         <div id="controls">
-                            <div class="ctrl" id="send">&#9940;</div>
+                            <div class="ctrl" id="send">xyz</div>
                             <div class="ctrl" id="center-image">&#9635;</div>
                             <div class="ctrl" id="pan-up">&#9650;</div>
                             <div class="ctrl" id="pan-down">&#9660;</div>
@@ -66,9 +67,9 @@
             var point2 =
                 //Point1 is camera position
             {
-                X: "127791.452",
-                Y: "398638.122",
-                Z: "11.699"
+                X: "0.1",
+                Y: "0.1",
+                Z: "0.1"
             };
             
             //Print yaw/pitch useing jQuery
@@ -129,6 +130,16 @@
                     {
                         "First":
                         {
+                            "title": "Area of interest 1",
+                            "type": "equirectangular",
+                            "panorama": "360images/Images filtered_aoi/stream_00004-000000_00016_0000187.jpg",
+                            
+                        },
+
+                        /*
+                        Tilburg
+                        "First":
+                        {
                             "title": "Tilburg 1",
                             "type": "equirectangular",
                             "panorama": "360images/trafficSign/stream_00002-000000_00020_0000043.jpg",
@@ -175,6 +186,7 @@
                                     "sceneId": "First",
                                 }]
                         }
+                        */
                     }
                 });
                 function UpdatePoint2(pitch,yaw)
@@ -255,9 +267,15 @@
                     var point1 =
                         //Point1 is camera position
                     {
-                        X: "127791.452",
-                        Y: "398638.122",
-                        Z: "11.699"
+                        //Tilburg 1
+                        //X: "127791.452",
+                        //Y: "398638.122",
+                        //Z: "11.699"
+
+                        //Suruz segmented pointcloud
+                        X: "131463.544",
+                        Y: "398806.108",
+                        Z: "16.816"
                     };            
 
                     pitch = viewer.getPitch();

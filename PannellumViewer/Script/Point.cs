@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+//modeler
 namespace PannellumViewer
 {
     public class Point
     {
-        public string X { get; set; }
-        public string Y { get; set; }
-        public string Z { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Z { get; set; }
     }
 }

@@ -73,6 +73,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="360images\Images filtered_aoi\stream_00001-000000_00003_0000070.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00001-000000_00005_0000072.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00001-000000_00008_0000075.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00002-000000_00015_0000107.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00002-000000_00016_0000108.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00002-000000_00017_0000109.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00002-000000_00018_0000110.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00002-000000_00019_0000111.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00002-000000_00024_0000116.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00002-000000_00026_0000118.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00002-000000_00028_0000120.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00004-000000_00016_0000187.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00005-000000_00034_0000234.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00014-000000_00025_0000785.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00025-000000_00008_0001277.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00038-000000_00024_0002403.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00038-000000_00026_0002405.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00038-000000_00030_0002409.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00038-000000_00032_0002411.jpg" />
+    <Content Include="360images\Images filtered_aoi\stream_00039-000000_00015_0002441.jpg" />
     <Content Include="360images\TrafficSign\Position_01_panorama.jpg" />
     <Content Include="360images\TrafficSign\Position_02_panorama.jpg" />
     <Content Include="360images\TrafficSign\sprite.png" />
@@ -113,7 +133,6 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GetDirectionVector.cs" />
     <Compile Include="Script\Vector.cs" />
     <Compile Include="Script\Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
