@@ -264,15 +264,15 @@
                 });
                 document.getElementById('send').addEventListener('click', function (e) {
                     // Call WebService
-                    var point1 =
-                        //Point1 is camera position
+                    //Point1 is camera position
+                    var point1 =                        
                     {
-                        //Tilburg 1
+                        //Tilburg 1 camera position
                         //X: "127791.452",
                         //Y: "398638.122",
                         //Z: "11.699"
 
-                        //Suruz segmented pointcloud
+                        //Suruz segmented pointcloud camera position
                         X: "131463.544",
                         Y: "398806.108",
                         Z: "16.816"
@@ -291,17 +291,20 @@
                     
                     $.ajax
                     ({
-                        url: 'WebServices/WebService1.asmx/SendPoints',
                         type: 'POST',
-                        data: '{"point1": ' + JSON.stringify(point1) + ', "point2": ' + JSON.stringify(point2) + ', "point3": ' + JSON.stringify(point3) + '}',
-                        contentType: "application/json",
                         dataType: "json",
+                        url: 'http://localhost/WebService1/WebService1.asmx/GetPointcloudPoint',
+                        data: '{"point1": ' + JSON.stringify(point1) + ', "point2": ' + JSON.stringify(point2) + ', "point3": ' + JSON.stringify(point3) + '}',
+                        
+                        contentType: "application/json",
 
-                        success: function (response) {
+                        success: function (response)
+                        {
                             console.log(JSON.parse(response.d)),
-                            alert(point1.X);
+                            alert("succesvol send");
                         },
-                        error: function (xhr, textStatus, errorThrown) {
+                        error: function (xhr, textStatus, errorThrown)
+                        {
                             alert('Error occurred.');
                         }
                     });
