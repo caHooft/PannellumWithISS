@@ -133,12 +133,11 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Script\Vector.cs" />
-    <Compile Include="Script\Point.cs" />
+    <Compile Include="Script\C\Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Script\C\StreamWriterOne.cs" />
     <Compile Include="WebServices\WebService1.asmx.cs">
       <DependentUpon>WebService1.asmx</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

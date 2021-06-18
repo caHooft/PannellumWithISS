@@ -300,7 +300,8 @@
 
                         success: function (response)
                         {
-                            console.log(JSON.parse(response.d)),
+                            //console.log(JSON.parse(response.d))
+                            console.log(response.d),
                             alert("succesvol send");
                         },
                         error: function (xhr, textStatus, errorThrown)
