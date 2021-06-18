@@ -123,6 +123,7 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe" />
     <Content Include="Default.aspx" />
     <Content Include="images\examplepano.jpg" />
+    <Content Include="Log.txt" />
     <Content Include="Script\css\pannellum.css" />
     <Content Include="Script\js\libpannellum.js" />
     <Content Include="Script\js\pannellum.js" />

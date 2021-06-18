@@ -66,7 +66,6 @@
         </div>
         <script>
             var point2 =
-                //Point1 is camera position
             {
                 X: "0.1",
                 Y: "0.1",
@@ -74,14 +73,16 @@
             };
             
             //Print yaw/pitch useing jQuery
-            var PrintCoordinate = function (hotSpotDiv, args) {
+            var PrintCoordinate = function (hotSpotDiv, args)
+            {
                 var pitch = args.pitch;
                 jQuery("label[for='pitch']").html("<strong>Pitch: </strong>" + pitch);
                 var yaw = args.yaw;
                 jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + yaw);
             };
             //Print x/y useing jQuery
-            var PrintCoordinateXY = function (hotSpotDiv, args) {
+            var PrintCoordinateXY = function (hotSpotDiv, args)
+            {
                 var X = args.X;
                 jQuery("label[for='X']").html("<strong>X: </strong>" + X);
                 var Y = args.Y;
@@ -91,8 +92,10 @@
             // script that debugs 2D image on click based on 8000 by 4000 image
             var origonalImageX = 8000;
             var origonalImageY = 4000;
-            $(document).ready(function () {
-                $('img').click(function (e) {
+            $(document).ready(function ()
+            {
+                $('img').click(function (e)
+                {
                     var offset = $(this).offset();
                     var x = (e.pageX - offset.left) * (origonalImageX / form1.children[1].children[1].children[0].clientWidth);
                     var y = (e.pageY - offset.top) * (origonalImageY / form1.children[1].children[1].children[0].clientHeight);
@@ -134,6 +137,21 @@
                         "title": "Area of interest 1",
                         "type": "equirectangular",
                         "panorama": "360images/Images filtered_aoi/stream_00004-000000_00016_0000187.jpg",
+                        "hotSpots":
+                            [{
+                                "pitch": 0,
+                                "yaw": 0,
+                                "type": "scene",
+                                "text": "Tilburg 2",
+                                "sceneId": "Second"
+                            },
+                            {
+                                "pitch": -37,
+                                "yaw": -178,
+                                "type": "info",
+                                "text": "grey car"
+                            },
+                            ]
                             
                     },
 
@@ -172,7 +190,7 @@
                             }
                             ]
                     },
-
+                    */
                     "Second":
                     {
                         "title": "Tilburg 2",
@@ -187,56 +205,10 @@
                                 "sceneId": "First",
                             }]
                     }
-                    */
+                    
                 }
             });
-            /*    
-            function download(strData, strFileName, strMimeType)
-            {
-                var D = document,
-                    A = arguments,
-                    a = D.createElement("a"),
-                    d = A[0],
-                    n = A[1],
-                    t = A[2] || "text/plain";
-
-                //build download link:
-                a.href = "data:" + strMimeType + "charset=utf-8," + escape(strData);
-                
-                if (window.MSBlobBuilder)
-                { // IE10
-                    var bb = new MSBlobBuilder();
-                    bb.append(strData);
-                    return navigator.msSaveBlob(bb, strFileName);
-                } 
-                //end if(window.MSBlobBuilder) 
-
-                if ('download' in a)
-                { //FF20, CH19
-                    a.setAttribute("download", n);
-                    a.innerHTML = "downloading...";
-                    D.body.appendChild(a);
-                    setTimeout(function ()
-                    {
-                        var e = D.createEvent("MouseEvents");
-                        e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                        a.dispatchEvent(e);
-                        D.body.removeChild(a);
-                    }, 66);
-                    return true;
-                }; /* end if('download' in a) */
-
-                //do iframe dataURL download: (older W3)
-                var f = D.createElement("iframe");
-                D.body.appendChild(f);
-                f.src = "data:" + (A[2] ? A[2] : "application/octet-stream") + (window.btoa ? ";base64" : "") + "," + (window.btoa ? window.btoa : escape)(strData);
-                setTimeout(function () 
-                {
-                    D.body.removeChild(f);
-                }, 333);
-                return true;
-            }*/
-
+            
             function UpdatePoint2(pitch,yaw)
             {
 
@@ -248,6 +220,16 @@
                     Y: values[1],
                     Z: values[2]
                 };
+            }
+
+            function saveDataInFile(data)
+            {
+            writer = new BufferedWriter(new FileWriter(Log.txt, true));
+
+            writer.append('hallo Naym');
+            writer.append(data);
+
+            writer.close();
             }
 
             function ConvertToRadians(angle)
@@ -269,7 +251,8 @@
                 return [-cosPitch * sinYaw, sinPitch, -cosPitch * cosYaw];
             }
 
-            function convertPitchYaw(pitch, yaw) {
+            function convertPitchYaw(pitch, yaw)
+            {
                 var k = 8000 / 360;
 
                 vert_angle_of_view = 4000 / k;
@@ -335,7 +318,9 @@
                     X: values[0],
                     Y: values[1],
                     Z: values[2]
-                };                    
+                };
+
+                saveDataInFile("text");
                     
                 $.ajax
                 ({
