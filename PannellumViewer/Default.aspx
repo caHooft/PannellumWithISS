@@ -232,8 +232,8 @@
                 point2 =
                 {
                     X: values[0],
-                    Y: values[1],
-                    Z: values[2]
+                    Y: (values[2]),
+                    Z: values[1]
                 };
             }
 
@@ -272,6 +272,7 @@
             function CenterImage() {
                 pitch = viewer.getPitch();
                 yaw = viewer.getYaw();
+                
                 //viewer.getHfov() = fov;
 
                 jQuery("label[for='pitch']").html("<strong>Pitch: </strong>" + pitch);
@@ -319,13 +320,14 @@
 
                 pitch = viewer.getPitch();
                 yaw = viewer.getYaw();
+                
                 var values = getDirectionVector(pitch, yaw);
 
                 var point3 =
                 {
                     X: values[0],
-                    Y: values[1],
-                    Z: values[2]
+                    Y: (values[2]),
+                    Z: values[1]
                 };
 
                 $.ajax

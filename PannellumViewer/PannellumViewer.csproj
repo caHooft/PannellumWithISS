@@ -123,7 +123,6 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe" />
     <Content Include="Default.aspx" />
     <Content Include="images\examplepano.jpg" />
-    <Content Include="Log.txt" />
     <Content Include="Script\css\img\background.svg" />
     <Content Include="Script\css\img\compass.svg" />
     <Content Include="Script\css\img\grab.svg" />
