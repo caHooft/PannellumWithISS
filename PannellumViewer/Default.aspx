@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -12,7 +11,8 @@
     <script src="Script/jquery/jquery-1.11.1.js"></script>
     <script src="Script/js/pannellum.js"></script>
     <script src="Script/js/libpannellum.js"></script>
-    
+    <script src="Script/C/StreamWriter.cs"></script>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -42,7 +42,8 @@
 
                     <div class="image">
                         <!--<img src="360images/trafficSign/stream_00002-000000_00020_0000043.jpg" style="width: 100%; height: 100%;" />!-->
-                        <img src="360images/Images filtered_aoi/stream_00004-000000_00016_0000187.jpg" style="width: 100%; height: 100%;" />
+                        <!--<img src="360images/Images filtered_aoi/stream_00004-000000_00016_0000187.jpg" style="width: 100%; height: 100%;" />!-->
+                        <img src="360images/Images filtered_aoi/stream_00038-000000_00032_0002411.jpg" style="width: 100%; height: 100%;" />
                     </div>
                 </div>
 
@@ -64,25 +65,25 @@
 
             </div>
         </div>
+
         <script>
+
             var point2 =
             {
                 X: "0.1",
                 Y: "0.1",
                 Z: "0.1"
             };
-            
+
             //Print yaw/pitch useing jQuery
-            var PrintCoordinate = function (hotSpotDiv, args)
-            {
+            var PrintCoordinate = function (hotSpotDiv, args) {
                 var pitch = args.pitch;
                 jQuery("label[for='pitch']").html("<strong>Pitch: </strong>" + pitch);
                 var yaw = args.yaw;
-                jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + yaw);
+                ////jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + yaw);
             };
             //Print x/y useing jQuery
-            var PrintCoordinateXY = function (hotSpotDiv, args)
-            {
+            var PrintCoordinateXY = function (hotSpotDiv, args) {
                 var X = args.X;
                 jQuery("label[for='X']").html("<strong>X: </strong>" + X);
                 var Y = args.Y;
@@ -92,10 +93,8 @@
             // script that debugs 2D image on click based on 8000 by 4000 image
             var origonalImageX = 8000;
             var origonalImageY = 4000;
-            $(document).ready(function ()
-            {
-                $('img').click(function (e)
-                {
+            $(document).ready(function () {
+                $('img').click(function (e) {
                     var offset = $(this).offset();
                     var x = (e.pageX - offset.left) * (origonalImageX / form1.children[1].children[1].children[0].clientWidth);
                     var y = (e.pageY - offset.top) * (origonalImageY / form1.children[1].children[1].children[0].clientHeight);
@@ -123,7 +122,7 @@
             {
                 "default":
                 {
-                    "firstScene": "First",
+                    "firstScene": "Area of interest 1",
                     "author": "HawarIT",
                     "sceneFadeDuration": 1000,
                     autoLoad: true,
@@ -132,18 +131,36 @@
                 },
                 "scenes":
                 {
-                    "First":
+                    "Area of interest 1":
                     {
                         "title": "Area of interest 1",
+                        "type": "equirectangular",
+                        "panorama": "360images/Images filtered_aoi/stream_00038-000000_00032_0002411.jpg",
+                        "hotSpots":
+                            [{
+                                "pitch": -4,
+                                "yaw": -165,
+                                "type": "scene",
+                                "text": "Area of interest 2",
+                                "sceneId": "Area of interest 2"
+                            },
+
+                            ]
+
+                    },
+
+                    "Area of interest 2":
+                    {
+                        "title": "Area of interest 2",
                         "type": "equirectangular",
                         "panorama": "360images/Images filtered_aoi/stream_00004-000000_00016_0000187.jpg",
                         "hotSpots":
                             [{
-                                "pitch": 0,
-                                "yaw": 0,
+                                "pitch": -6,
+                                "yaw": 75,
                                 "type": "scene",
-                                "text": "Tilburg 2",
-                                "sceneId": "Second"
+                                "text": "Area of interest 1",
+                                "sceneId": "Area of interest 1"
                             },
                             {
                                 "pitch": -37,
@@ -152,7 +169,7 @@
                                 "text": "grey car"
                             },
                             ]
-                            
+
                     },
 
                     /*
@@ -190,7 +207,7 @@
                             }
                             ]
                     },
-                    */
+                    
                     "Second":
                     {
                         "title": "Tilburg 2",
@@ -205,13 +222,11 @@
                                 "sceneId": "First",
                             }]
                     }
-                    
+                    */
                 }
             });
-            
-            function UpdatePoint2(pitch,yaw)
-            {
 
+            function UpdatePoint2(pitch, yaw) {
                 var values = getDirectionVector(pitch, yaw);
 
                 point2 =
@@ -222,24 +237,12 @@
                 };
             }
 
-            function saveDataInFile(data)
-            {
-            writer = new BufferedWriter(new FileWriter(Log.txt, true));
+            function ConvertToRadians(angle) {
 
-            writer.append('hallo Naym');
-            writer.append(data);
-
-            writer.close();
-            }
-
-            function ConvertToRadians(angle)
-            {
-            
                 return (Math.PI / 180) * angle;
             }
 
-            function getDirectionVector(pitch, yaw)
-            {
+            function getDirectionVector(pitch, yaw) {
                 var pitchRadians = ConvertToRadians(pitch);
                 var yawRadians = ConvertToRadians(yaw);
 
@@ -251,8 +254,7 @@
                 return [-cosPitch * sinYaw, sinPitch, -cosPitch * cosYaw];
             }
 
-            function convertPitchYaw(pitch, yaw)
-            {
+            function convertPitchYaw(pitch, yaw) {
                 var k = 8000 / 360;
 
                 vert_angle_of_view = 4000 / k;
@@ -292,22 +294,28 @@
             //dead center button
             document.getElementById('center-image').addEventListener('click', function (e) {
                 CenterImage();
+
             });
             document.getElementById('send').addEventListener('click', function (e) {
                 // Call WebService
-                //Point1 is camera position
-                var point1 =                        
+                // Point1 is camera position
+                var point1 =
                 {
                     //Tilburg 1 camera position
                     //X: "127791.452",
                     //Y: "398638.122",
                     //Z: "11.699"
 
-                    //Suruz segmented pointcloud camera position
-                    X: "131463.544",
-                    Y: "398806.108",
-                    Z: "16.816"
-                };            
+                    //Area of interes 2
+                    //X: "131463.544",
+                    //Y: "398806.108",
+                    //Z: "16.816"
+                    
+                    //Area of interest 1
+                    X:"131453.074",  
+                    Y:"398786.554",
+                    Z:"16.889"
+                };
 
                 pitch = viewer.getPitch();
                 yaw = viewer.getYaw();
@@ -320,29 +328,31 @@
                     Z: values[2]
                 };
 
-                saveDataInFile("text");
-                    
                 $.ajax
                 ({
                     type: 'POST',
                     dataType: "json",
                     url: 'http://localhost/WebService1/WebService1.asmx/GetPointcloudPoint',
                     data: '{"point1": ' + JSON.stringify(point1) + ', "point2": ' + JSON.stringify(point2) + ', "point3": ' + JSON.stringify(point3) + '}',
-                        
+
                     contentType: "application/json",
 
-                    success: function (response)
-                    {
-                        //console.log(JSON.parse(response.d))
-                        console.log(response.d),
-                        alert("succesvol send");
+                    success: function (response) {
+                        
+                        if (response.d == "No point found")
+                        {                            
+                                alert('Point clicked is outside of pointcloud.');
+                        }
+
+                        //alert("succesvol send");
+
+                        console.log(response.d);
+                        
                     },
-                    error: function (xhr, textStatus, errorThrown)
-                    {
+                    error: function (xhr, textStatus, errorThrown) {
                         alert('Error occurred.');
                     }
                 });
-                    
             });
             document.getElementById('pan-up').addEventListener('click', function (e) {
                 viewer.setPitch(viewer.getPitch() + 10);

@@ -124,7 +124,13 @@
     <Content Include="Default.aspx" />
     <Content Include="images\examplepano.jpg" />
     <Content Include="Log.txt" />
+    <Content Include="Script\css\img\background.svg" />
+    <Content Include="Script\css\img\compass.svg" />
+    <Content Include="Script\css\img\grab.svg" />
+    <Content Include="Script\css\img\grabbing.svg" />
+    <Content Include="Script\css\img\sprites.svg" />
     <Content Include="Script\css\pannellum.css" />
+    <Content Include="Script\jquery\jquery-1.11.1.js" />
     <Content Include="Script\js\libpannellum.js" />
     <Content Include="Script\js\pannellum.js" />
     <Content Include="Web.config" />
@@ -135,9 +141,11 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Script\C\Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Script\C\StreamWriter.cs" />
     <Compile Include="WebServices\WebService1.asmx.cs">
       <DependentUpon>WebService1.asmx</DependentUpon>
     </Compile>

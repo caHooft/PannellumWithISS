@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PannellumViewer", "Pannellu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PannellumTest", "PannellumTest\PannellumTest.csproj", "{2E9389D3-CE11-4C4D-BE81-A3A478C72CCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LIBRAYCASTPOINTPCL18", "LIBRAYCASTPOINTPCL18\LIBRAYCASTPOINTPCL18.csproj", "{AB12B9C1-3B32-47D3-BFC3-925DB09F8933}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2E9389D3-CE11-4C4D-BE81-A3A478C72CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E9389D3-CE11-4C4D-BE81-A3A478C72CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E9389D3-CE11-4C4D-BE81-A3A478C72CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB12B9C1-3B32-47D3-BFC3-925DB09F8933}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB12B9C1-3B32-47D3-BFC3-925DB09F8933}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB12B9C1-3B32-47D3-BFC3-925DB09F8933}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB12B9C1-3B32-47D3-BFC3-925DB09F8933}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
