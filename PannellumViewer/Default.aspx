@@ -5,13 +5,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="utf-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Pannellum</title>
+
     <link href="Script/css/pannellum.css" rel="stylesheet" />
+
     <script src="Script/jquery/jquery-1.11.1.js"></script>
     <script src="Script/js/pannellum.js"></script>
     <script src="Script/js/libpannellum.js"></script>
-    <script src="Script/C/StreamWriter.cs"></script>
+    <script src="Views/PanoramaViewer.js"></script>
 
 </head>
 <body>
@@ -62,19 +66,28 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
         <script>
 
+            class Point {
+                constructor(X, Y, Z) {
+                    this.X = X;
+                    this.Y = Y;
+                    this.Z = Z;
+                }
+            }
+
+            point2 = new Point(0.1, 0.1, 0.1)
+            /*
             var point2 =
             {
                 X: "0.1",
                 Y: "0.1",
                 Z: "0.1"
             };
-
+            */
             //Print yaw/pitch useing jQuery
             var PrintCoordinate = function (hotSpotDiv, args) {
                 var pitch = args.pitch;
@@ -117,115 +130,9 @@
                     jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + Yaw);
                 });
             });
-
-            viewer = pannellum.viewer('panorama',
-            {
-                "default":
-                {
-                    "firstScene": "Area of interest 1",
-                    "author": "HawarIT",
-                    "sceneFadeDuration": 1000,
-                    autoLoad: true,
-                    "showControls": false
-
-                },
-                "scenes":
-                {
-                    "Area of interest 1":
-                    {
-                        "title": "Area of interest 1",
-                        "type": "equirectangular",
-                        "panorama": "360images/Images filtered_aoi/stream_00038-000000_00032_0002411.jpg",
-                        "hotSpots":
-                            [{
-                                "pitch": -4,
-                                "yaw": -165,
-                                "type": "scene",
-                                "text": "Area of interest 2",
-                                "sceneId": "Area of interest 2"
-                            },
-
-                            ]
-
-                    },
-
-                    "Area of interest 2":
-                    {
-                        "title": "Area of interest 2",
-                        "type": "equirectangular",
-                        "panorama": "360images/Images filtered_aoi/stream_00004-000000_00016_0000187.jpg",
-                        "hotSpots":
-                            [{
-                                "pitch": -6,
-                                "yaw": 75,
-                                "type": "scene",
-                                "text": "Area of interest 1",
-                                "sceneId": "Area of interest 1"
-                            },
-                            {
-                                "pitch": -37,
-                                "yaw": -178,
-                                "type": "info",
-                                "text": "grey car"
-                            },
-                            ]
-
-                    },
-
-                    /*
-                    Tilburg
-                    "First":
-                    {
-                        "title": "Tilburg 1",
-                        "type": "equirectangular",
-                        "panorama": "360images/trafficSign/stream_00002-000000_00020_0000043.jpg",
-                        "hotSpots":
-                            [{
-                                "pitch": 0,
-                                "yaw": 0,
-                                "type": "scene",
-                                "text": "Tilburg 2",
-                                "sceneId": "Second"
-                            },
-                            {
-                                "pitch": -37,
-                                "yaw": -178,
-                                "type": "info",
-                                "text": "extreme pitch and yaw example (car)"
-                            },
-                            {
-                                "pitch": 0,
-                                "yaw": -178,
-                                "type": "info",
-                                "text": "extreme yaw example (roundabout)"
-                            },
-                            {
-                                "pitch": -54,
-                                "yaw": 0,
-                                "type": "info",
-                                "text": "extreme pitch example (car)"
-                            }
-                            ]
-                    },
-                    
-                    "Second":
-                    {
-                        "title": "Tilburg 2",
-                        "type": "equirectangular",
-                        "panorama": "360images/trafficSign/stream_00002-000000_00007_0000030.jpg",
-                        "hotSpots":
-                            [{
-                                "pitch": 0,
-                                "yaw": 0,
-                                "type": "scene",
-                                "text": "Tilburg 1",
-                                "sceneId": "First",
-                            }]
-                    }
-                    */
-                }
-            });
-
+            
+            viewer = new Viewer("Area of interest 1");
+            
             function UpdatePoint2(pitch, yaw) {
                 var values = getDirectionVector(pitch, yaw);
 
@@ -272,7 +179,7 @@
             function CenterImage() {
                 pitch = viewer.getPitch();
                 yaw = viewer.getYaw();
-                
+
                 //viewer.getHfov() = fov;
 
                 jQuery("label[for='pitch']").html("<strong>Pitch: </strong>" + pitch);
@@ -311,16 +218,16 @@
                     //X: "131463.544",
                     //Y: "398806.108",
                     //Z: "16.816"
-                    
+
                     //Area of interest 1
-                    X:"131453.074",  
-                    Y:"398786.554",
-                    Z:"16.889"
+                    X: "131453.074",
+                    Y: "398786.554",
+                    Z: "16.889"
                 };
 
                 pitch = viewer.getPitch();
                 yaw = viewer.getYaw();
-                
+
                 var values = getDirectionVector(pitch, yaw);
 
                 var point3 =
@@ -340,16 +247,15 @@
                     contentType: "application/json",
 
                     success: function (response) {
-                        
-                        if (response.d == "No point found")
-                        {                            
-                                alert('Point clicked is outside of pointcloud.');
+
+                        if (response.d == "No point found") {
+                            alert('Point clicked is outside of pointcloud.');
                         }
 
                         //alert("succesvol send");
 
                         console.log(response.d);
-                        
+
                     },
                     error: function (xhr, textStatus, errorThrown) {
                         alert('Error occurred.');
