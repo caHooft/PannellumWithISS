@@ -84,119 +84,115 @@
             //viewer = pannellum.viewer(new Viewer("Area of interest 1"));
 
             viewer = pannellum.viewer('panorama',
+    {
+        "default":
+        {
+            "firstScene": "Area of interest 1",
+            "author": "HawarIT",
+            "sceneFadeDuration": 1000,
+            autoLoad: true,
+            "showControls": false
+
+        },
+        "scenes":
+        {
+            "Area of interest 1":
             {
-                "default":
-                {
-                    "firstScene": "Area of interest 1",
-                    "author": "HawarIT",
-                    "sceneFadeDuration": 1000,
-                    autoLoad: true,
-                    "showControls": false
+                "title": "Area of interest 1",
+                "type": "equirectangular",
+                "panorama": "360images/Images filtered_aoi/stream_00038-000000_00032_0002411.jpg",
 
-                },
-                "scenes":
-                {
-                    "Area of interest 1":
-                    {
-                        "title": "Area of interest 1",
-                        "type": "equirectangular",
-                        "panorama": "360images/Images filtered_aoi/stream_00038-000000_00032_0002411.jpg",
-
-                        "hotSpots":
-                            [{
-                                "pitch": -4,
-                                "yaw": -165,
-                                "type": "scene",
-                                "text": "Area of interest 2",
-                                "sceneId": "Area of interest 2"
-                            },
-
-                            ]
-
+                "hotSpots":
+                    [{
+                        "pitch": -4,
+                        "yaw": -165,
+                        "type": "scene",
+                        "text": "Area of interest 2",
+                        "sceneId": "Area of interest 2"
                     },
 
-                    "Area of interest 2":
-                    {
-                        "title": "Area of interest 2",
-                        "type": "equirectangular",
-                        "panorama": "360images/Images filtered_aoi/stream_00004-000000_00016_0000187.jpg",
-                        "hotSpots":
-                            [{
-                                "pitch": -6,
-                                "yaw": 75,
-                                "type": "scene",
-                                "text": "Area of interest 1",
-                                "sceneId": "Area of interest 1"
-                            },
-                            {
-                                "pitch": -37,
-                                "yaw": -178,
-                                "type": "info",
-                                "text": "grey car"
-                            },
-                            ]
+                    ]
 
-                    },
-                    "Tilburg 1":
-                    {
-                        "title": "Tilburg 1",
-                        "type": "equirectangular",
-                        "panorama": "360images/trafficSign/stream_00002-000000_00020_0000043.jpg",
-                        "hotSpots":
-                            [{
-                                "pitch": 0,
-                                "yaw": 0,
-                                "type": "scene",
-                                "text": "Tilburg 2",
-                                "sceneId": "Second"
-                            },
-                            {
-                                "pitch": -37,
-                                "yaw": -178,
-                                "type": "info",
-                                "text": "extreme pitch and yaw example (car)"
-                            },
-                            {
-                                "pitch": 0,
-                                "yaw": -178,
-                                "type": "info",
-                                "text": "extreme yaw example (roundabout)"
-                            },
-                            {
-                                "pitch": -54,
-                                "yaw": 0,
-                                "type": "info",
-                                "text": "extreme pitch example (car)"
-                            }
-                            ]
-                    },
+            },
 
-                    "Tilburg 2":
+            "Area of interest 2":
+            {
+                "title": "Area of interest 2",
+                "type": "equirectangular",
+                "panorama": "360images/Images filtered_aoi/stream_00004-000000_00016_0000187.jpg",
+                "hotSpots":
+                    [{
+                        "pitch": -6,
+                        "yaw": 75,
+                        "type": "scene",
+                        "text": "Area of interest 1",
+                        "sceneId": "Area of interest 1"
+                    },
                     {
-                        "title": "Tilburg 2",
-                        "type": "equirectangular",
-                        "panorama": "360images/trafficSign/stream_00002-000000_00007_0000030.jpg",
-                        "hotSpots":
-                            [{
-                                "pitch": 0,
-                                "yaw": 0,
-                                "type": "scene",
-                                "text": "Tilburg 1",
-                                "sceneId": "First",
-                            }]
+                        "pitch": -37,
+                        "yaw": -178,
+                        "type": "info",
+                        "text": "grey car"
+                    },
+                    ]
+
+            },
+            "Tilburg 1":
+            {
+                "title": "Tilburg 1",
+                "type": "equirectangular",
+                "panorama": "360images/trafficSign/stream_00002-000000_00020_0000043.jpg",
+                "hotSpots":
+                    [{
+                        "pitch": 0,
+                        "yaw": 0,
+                        "type": "scene",
+                        "text": "Tilburg 2",
+                        "sceneId": "Second"
+                    },
+                    {
+                        "pitch": -37,
+                        "yaw": -178,
+                        "type": "info",
+                        "text": "extreme pitch and yaw example (car)"
+                    },
+                    {
+                        "pitch": 0,
+                        "yaw": -178,
+                        "type": "info",
+                        "text": "extreme yaw example (roundabout)"
+                    },
+                    {
+                        "pitch": -54,
+                        "yaw": 0,
+                        "type": "info",
+                        "text": "extreme pitch example (car)"
                     }
-                }
-            });
+                    ]
+            },
 
-            point2 = new Point(0.1, 0.1, 0.1)
-            /*
+            "Tilburg 2":
+            {
+                "title": "Tilburg 2",
+                "type": "equirectangular",
+                "panorama": "360images/trafficSign/stream_00002-000000_00007_0000030.jpg",
+                "hotSpots":
+                    [{
+                        "pitch": 0,
+                        "yaw": 0,
+                        "type": "scene",
+                        "text": "Tilburg 1",
+                        "sceneId": "First",
+                    }]
+            }
+        }
+    });
             var point2 =
             {
-                X: "0.1",
-                Y: "0.1",
-                Z: "0.1"
+                pitch: 1,
+                yaw: 1
             };
-            */
+
             //Print yaw/pitch useing jQuery
             var PrintCoordinate = function (hotSpotDiv, args) {
                 var pitch = args.pitch;
@@ -241,13 +237,18 @@
             });
 
             function UpdatePoint2(pitch, yaw) {
-                var values = getDirectionVector(pitch, yaw);
+               /*var values = getDirectionVector(pitch, yaw);
 
                 point2 =
                 {
                     X: values[0],
                     Y: (values[2]),
                     Z: values[1]
+                };
+                */
+                point2 =
+                {
+                    pitch, yaw
                 };
             }
 
@@ -315,7 +316,18 @@
             document.getElementById('send').addEventListener('click', function (e) {
                 // Call WebService
                 // Point1 is camera position
-                var point1 =
+                point1 = new Point(131453.074,398786.554,16.889);
+
+                pitch = viewer.getPitch();
+                yaw = viewer.getYaw();
+
+                var values =
+                    {
+                        pitch, yaw
+                    };
+
+                /*
+                var point1 = new Point
                 {
                     //Tilburg 1 camera position
                     //X: "127791.452",
@@ -332,10 +344,10 @@
                     Y: "398786.554",
                     Z: "16.889"
                 };
-
+                
                 pitch = viewer.getPitch();
                 yaw = viewer.getYaw();
-
+                
                 var values = getDirectionVector(pitch, yaw);
 
                 var point3 =
@@ -344,13 +356,14 @@
                     Y: (values[2]),
                     Z: values[1]
                 };
+                */
 
                 $.ajax
                 ({
                     type: 'POST',
                     dataType: "json",
                     url: 'http://localhost/WebService1/WebService1.asmx/GetPointcloudPoint',
-                    data: '{"point1": ' + JSON.stringify(point1) + ', "point2": ' + JSON.stringify(point2) + ', "point3": ' + JSON.stringify(point3) + '}',
+                    data: '{"point1": ' + JSON.stringify(point1) + ', "angle1": ' + JSON.stringify(point2) + ', "angle2": ' + JSON.stringify(values) + '}',
 
                     contentType: "application/json",
 
