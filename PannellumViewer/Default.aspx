@@ -187,7 +187,7 @@
             }
         }
     });
-            var point2 =
+            var angle1 =
             {
                 pitch: 1,
                 yaw: 1
@@ -236,17 +236,8 @@
                 });
             });
 
-            function UpdatePoint2(pitch, yaw) {
-               /*var values = getDirectionVector(pitch, yaw);
-
-                point2 =
-                {
-                    X: values[0],
-                    Y: (values[2]),
-                    Z: values[1]
-                };
-                */
-                point2 =
+            function UpdateAngle1(pitch, yaw) {
+                angle1 =
                 {
                     pitch, yaw
                 };
@@ -305,7 +296,7 @@
                 jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + coords[1]);
 
                 convertPitchYaw(coords[0], coords[1]);
-                UpdatePoint2(coords[0], coords[1]);
+                UpdateAngle1(coords[0], coords[1]);
             });
 
             //dead center button
@@ -321,49 +312,17 @@
                 pitch = viewer.getPitch();
                 yaw = viewer.getYaw();
 
-                var values =
+                var angle2 =
                     {
                         pitch, yaw
                     };
-
-                /*
-                var point1 = new Point
-                {
-                    //Tilburg 1 camera position
-                    //X: "127791.452",
-                    //Y: "398638.122",
-                    //Z: "11.699"
-
-                    //Area of interes 2
-                    //X: "131463.544",
-                    //Y: "398806.108",
-                    //Z: "16.816"
-
-                    //Area of interest 1
-                    X: "131453.074",
-                    Y: "398786.554",
-                    Z: "16.889"
-                };
-                
-                pitch = viewer.getPitch();
-                yaw = viewer.getYaw();
-                
-                var values = getDirectionVector(pitch, yaw);
-
-                var point3 =
-                {
-                    X: values[0],
-                    Y: (values[2]),
-                    Z: values[1]
-                };
-                */
 
                 $.ajax
                 ({
                     type: 'POST',
                     dataType: "json",
                     url: 'http://localhost/WebService1/WebService1.asmx/GetPointcloudPoint',
-                    data: '{"point1": ' + JSON.stringify(point1) + ', "angle1": ' + JSON.stringify(point2) + ', "angle2": ' + JSON.stringify(values) + '}',
+                    data: '{"point1": ' + JSON.stringify(point1) + ', "angle1": ' + JSON.stringify(angle1) + ', "angle2": ' + JSON.stringify(angle2) + '}',
 
                     contentType: "application/json",
 
