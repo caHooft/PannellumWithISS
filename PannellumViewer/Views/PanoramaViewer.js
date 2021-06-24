@@ -1,4 +1,16 @@
 ﻿class Viewer {
+    constructor() {
+        if (!Viewer._instance) {
+            Viewer._instance = this;
+        }
+        return Viewer._instance;
+    }
+    static getInstance() {
+        return this._instance;
+    }
+}
+
+class PanoramaViewer {
     constructor(scene) {
 
         viewer = pannellum.viewer('panorama',
@@ -55,56 +67,54 @@
                     ]
 
             },
+                "Tilburg 1":
+                {
+                    "title": "Tilburg 1",
+                    "type": "equirectangular",
+                    "panorama": "360images/trafficSign/stream_00002-000000_00020_0000043.jpg",
+                    "hotSpots":
+                        [{
+                            "pitch": 0,
+                            "yaw": 0,
+                            "type": "scene",
+                            "text": "Tilburg 2",
+                            "sceneId": "Second"
+                        },
+                        {
+                            "pitch": -37,
+                            "yaw": -178,
+                            "type": "info",
+                            "text": "extreme pitch and yaw example (car)"
+                        },
+                        {
+                            "pitch": 0,
+                            "yaw": -178,
+                            "type": "info",
+                            "text": "extreme yaw example (roundabout)"
+                        },
+                        {
+                            "pitch": -54,
+                            "yaw": 0,
+                            "type": "info",
+                            "text": "extreme pitch example (car)"
+                        }
+                        ]
+                },
 
-            //    Tilburg
-            //    "First":
-            //    {
-            //        "title": "Tilburg 1",
-            //        "type": "equirectangular",
-            //        "panorama": "360images/trafficSign/stream_00002-000000_00020_0000043.jpg",
-            //        "hotSpots":
-            //            [{
-            //                "pitch": 0,
-            //                "yaw": 0,
-            //                "type": "scene",
-            //                "text": "Tilburg 2",
-            //                "sceneId": "Second"
-            //            },
-            //            {
-            //                "pitch": -37,
-            //                "yaw": -178,
-            //                "type": "info",
-            //                "text": "extreme pitch and yaw example (car)"
-            //            },
-            //            {
-            //                "pitch": 0,
-            //                "yaw": -178,
-            //                "type": "info",
-            //                "text": "extreme yaw example (roundabout)"
-            //            },
-            //            {
-            //                "pitch": -54,
-            //                "yaw": 0,
-            //                "type": "info",
-            //                "text": "extreme pitch example (car)"
-            //            }
-            //            ]
-            //    },
-
-            //    "Second":
-            //    {
-            //        "title": "Tilburg 2",
-            //        "type": "equirectangular",
-            //        "panorama": "360images/trafficSign/stream_00002-000000_00007_0000030.jpg",
-            //        "hotSpots":
-            //            [{
-            //                "pitch": 0,
-            //                "yaw": 0,
-            //                "type": "scene",
-            //                "text": "Tilburg 1",
-            //                "sceneId": "First",
-            //            }]
-            //    }                    
+                "Tilburg 2":
+                {
+                    "title": "Tilburg 2",
+                    "type": "equirectangular",
+                    "panorama": "360images/trafficSign/stream_00002-000000_00007_0000030.jpg",
+                    "hotSpots":
+                        [{
+                            "pitch": 0,
+                            "yaw": 0,
+                            "type": "scene",
+                            "text": "Tilburg 1",
+                            "sceneId": "First",
+                        }]
+                }                    
         }
     });
 

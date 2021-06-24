@@ -16,6 +16,8 @@
     <script src="Script/js/pannellum.js"></script>
     <script src="Script/js/libpannellum.js"></script>
     <script src="Views/PanoramaViewer.js"></script>
+    <script src="Models/Point.js"></script>
+    <script src="Models/Singleton.js"></script>
 
 </head>
 <body>
@@ -71,13 +73,120 @@
 
         <script>
 
-            class Point {
-                constructor(X, Y, Z) {
-                    this.X = X;
-                    this.Y = Y;
-                    this.Z = Z;
+            var instanceOne = new Singleton()
+            var instanceTwo = new Singleton()
+
+            Singleton.getInstance();
+
+            console.log(instanceOne === instanceTwo) // Logs "true" if singleton works
+
+            //viewer = new Viewer("Area of interest 1")
+            //viewer = pannellum.viewer(new Viewer("Area of interest 1"));
+
+            viewer = pannellum.viewer('panorama',
+            {
+                "default":
+                {
+                    "firstScene": "Area of interest 1",
+                    "author": "HawarIT",
+                    "sceneFadeDuration": 1000,
+                    autoLoad: true,
+                    "showControls": false
+
+                },
+                "scenes":
+                {
+                    "Area of interest 1":
+                    {
+                        "title": "Area of interest 1",
+                        "type": "equirectangular",
+                        "panorama": "360images/Images filtered_aoi/stream_00038-000000_00032_0002411.jpg",
+
+                        "hotSpots":
+                            [{
+                                "pitch": -4,
+                                "yaw": -165,
+                                "type": "scene",
+                                "text": "Area of interest 2",
+                                "sceneId": "Area of interest 2"
+                            },
+
+                            ]
+
+                    },
+
+                    "Area of interest 2":
+                    {
+                        "title": "Area of interest 2",
+                        "type": "equirectangular",
+                        "panorama": "360images/Images filtered_aoi/stream_00004-000000_00016_0000187.jpg",
+                        "hotSpots":
+                            [{
+                                "pitch": -6,
+                                "yaw": 75,
+                                "type": "scene",
+                                "text": "Area of interest 1",
+                                "sceneId": "Area of interest 1"
+                            },
+                            {
+                                "pitch": -37,
+                                "yaw": -178,
+                                "type": "info",
+                                "text": "grey car"
+                            },
+                            ]
+
+                    },
+                    "Tilburg 1":
+                    {
+                        "title": "Tilburg 1",
+                        "type": "equirectangular",
+                        "panorama": "360images/trafficSign/stream_00002-000000_00020_0000043.jpg",
+                        "hotSpots":
+                            [{
+                                "pitch": 0,
+                                "yaw": 0,
+                                "type": "scene",
+                                "text": "Tilburg 2",
+                                "sceneId": "Second"
+                            },
+                            {
+                                "pitch": -37,
+                                "yaw": -178,
+                                "type": "info",
+                                "text": "extreme pitch and yaw example (car)"
+                            },
+                            {
+                                "pitch": 0,
+                                "yaw": -178,
+                                "type": "info",
+                                "text": "extreme yaw example (roundabout)"
+                            },
+                            {
+                                "pitch": -54,
+                                "yaw": 0,
+                                "type": "info",
+                                "text": "extreme pitch example (car)"
+                            }
+                            ]
+                    },
+
+                    "Tilburg 2":
+                    {
+                        "title": "Tilburg 2",
+                        "type": "equirectangular",
+                        "panorama": "360images/trafficSign/stream_00002-000000_00007_0000030.jpg",
+                        "hotSpots":
+                            [{
+                                "pitch": 0,
+                                "yaw": 0,
+                                "type": "scene",
+                                "text": "Tilburg 1",
+                                "sceneId": "First",
+                            }]
+                    }
                 }
-            }
+            });
 
             point2 = new Point(0.1, 0.1, 0.1)
             /*
@@ -130,9 +239,7 @@
                     jQuery("label[for='yaw']").html("<strong>Yaw: </strong>" + Yaw);
                 });
             });
-            
-            viewer = new Viewer("Area of interest 1");
-            
+
             function UpdatePoint2(pitch, yaw) {
                 var values = getDirectionVector(pitch, yaw);
 
@@ -177,6 +284,7 @@
             }
 
             function CenterImage() {
+
                 pitch = viewer.getPitch();
                 yaw = viewer.getYaw();
 

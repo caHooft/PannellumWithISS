@@ -162,9 +162,12 @@
     <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
     <Content Include="bin\roslyn\vbc.exe" />
     <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="Controllers\Controller.js" />
     <Content Include="Default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="images\examplepano.jpg" />
+    <Content Include="Models\Singleton.js" />
+    <Content Include="Models\Point.js" />
     <Content Include="Script\css\img\background.svg" />
     <Content Include="Script\css\img\compass.svg" />
     <Content Include="Script\css\img\grab.svg" />
@@ -180,7 +183,6 @@
     <Content Include="WebServices\WebService1.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\PannellumController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -213,7 +215,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="obj\Debug\" />
   </ItemGroup>
   <PropertyGroup>
