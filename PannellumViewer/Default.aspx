@@ -243,23 +243,6 @@
                 };
             }
 
-            function ConvertToRadians(angle) {
-
-                return (Math.PI / 180) * angle;
-            }
-
-            function getDirectionVector(pitch, yaw) {
-                var pitchRadians = ConvertToRadians(pitch);
-                var yawRadians = ConvertToRadians(yaw);
-
-                var sinPitch = Math.sin(pitchRadians);
-                var cosPitch = Math.cos(pitchRadians);
-                var sinYaw = Math.sin(yawRadians);
-                var cosYaw = Math.cos(yawRadians);
-
-                return [-cosPitch * sinYaw, sinPitch, -cosPitch * cosYaw];
-            }
-
             function convertPitchYaw(pitch, yaw) {
                 var k = 8000 / 360;
 
