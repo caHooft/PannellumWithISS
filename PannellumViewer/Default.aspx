@@ -72,9 +72,31 @@
         </div>
 
         <script>
+            /*
+            class Controller {
+                import TicTacToe from './models';
+                import View from './views';
+                constructor() {
+                    this.model = new TicTacToe();
+                    this.view = new View();
 
-            var instanceOne = new Singleton()
-            var instanceTwo = new Singleton()
+                    this.view.playEvent.addListener(move => { this.model.play(move); });
+
+                    this.model.updateCellEvent.addListener(data => { this.view.updateCell(data); });
+                    this.model.victoryEvent.addListener(winner => { this.view.victory(winner); });
+                    this.model.drawEvent.addListener(() => { this.view.draw(); });
+                }
+
+                run() {
+                    this.view.render();
+                }
+                //export default Controller;
+            }
+            */
+
+
+            var instanceOne = new Singleton();
+            var instanceTwo = new Singleton();
 
             Singleton.getInstance();
 
@@ -189,8 +211,8 @@
     });
             var angle1 =
             {
-                pitch: 1,
-                yaw: 1
+                pitch: 0,
+                yaw: 0
             };
 
             //Print yaw/pitch useing jQuery
@@ -290,7 +312,10 @@
             document.getElementById('send').addEventListener('click', function (e) {
                 // Call WebService
                 // Point1 is camera position
-                point1 = new Point(131453.074,398786.554,16.889);
+                point1 = new Point(131453.074, 398786.554, 16.889);
+
+                //Camera position Suruz version
+                //point1 = new Point(131453, 398787, 16.8858);
 
                 pitch = viewer.getPitch();
                 yaw = viewer.getYaw();

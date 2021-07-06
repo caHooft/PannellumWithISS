@@ -10,6 +10,10 @@
     }
 }
 
+
+import './Script/css/pannellum.css';
+//import Event from './event';
+
 class PanoramaViewer {
     constructor(scene) {
 
@@ -120,3 +124,5 @@ class PanoramaViewer {
 
     }
 }
+
+export default PanoramaViewer;
